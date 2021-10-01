@@ -19,17 +19,21 @@ void main()
     cout<<endl;
   }
   cout<<"Function is f(x)= "<<endl;
-
-  for(int h=n;h>=0;h--)
-  cout<<array[h]<<"x^"<<h<<"+ ";
-  cout<<endl;
-
-  int var;
-  cout<<"Enter the value of n to compute f(n) for the function ";
-  cin>>var;
-  cout<<endl;
-  int result=0;
-  int k=n;
+ 
+ char ch='A';    
+    int i, j, k, m;    
+    for(i=1;i<=5;i++)    
+    {    
+        for(j=5;j>=i;j--)    
+            cout<<" ";    
+        for(k=1;k<=i;k++)    
+            cout<<ch++;    
+            ch--;    
+        for(m=1;m<i;m++)    
+            cout<<--ch;    
+        cout<<"\n";    
+        ch='A';    
+    }    
 
 
   for(int j=0;j<=k;j++)
