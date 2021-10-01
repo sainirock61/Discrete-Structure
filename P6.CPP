@@ -1,26 +1,28 @@
-#include<iostream.h>
-#include<conio.h>
-
-void toh(int n,char sour, char aux,char des)
-{
-   if(n==1)
-   {
-     cout<<"Move Disk "<<n<<" from "<<sour<<" to "<<des<<endl;
-     return;
-   }
-
-   toh(n-1,sour,des,aux);
-   cout<<"Move Disk "<<n<<" from "<<sour<<" to "<<des<<endl;
-   toh(n-1,aux,sour,des);
-}
+#include <iostream>
+using namespace std;
 
 int main()
-{  clrscr();
-   int n;
+{
+     int n, num, digit, rev = 0;
 
-   cout<<"Enter no. of disks:";
-   cin>>n;
-   toh(n,'A','B','C');
-   getch();
-   return 0;
+     cout << "Enter a positive number: ";
+     cin >> num;
+
+     n = num;
+
+     do
+     {
+         digit = num % 10;
+         rev = (rev * 10) + digit;
+         num = num / 10;
+     } while (num != 0);
+
+     cout << " The reverse of the number is: " << rev << endl;
+
+     if (n == rev)
+         cout << " The number is a palindrome.";
+     else
+         cout << " The number is not a palindrome.";
+
+    return 0;
 }
