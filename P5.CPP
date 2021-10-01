@@ -1,31 +1,29 @@
-#include<iostream.h>
-#include<conio.h>
+#include <iostream>
+using namespace std;
 
-int fibonacci(int n)
-{
-  if ((n==1)||(n==0))
-  {
-    return (n);
-  }
-  else
-  {
-   return(fibonacci(n-1)+fibonacci(n-2));
-  }
-}
+int main() {
+    int n, t1 = 0, t2 = 1, nextTerm = 0;
 
-int main()
-{
- clrscr();
- int n,i=0;
- cout<<"Input the number of terms for Fibonacci Series:";
- cin>>n;
- cout<<"\nFibonacci Series is as follows\n";
+    cout << "Enter the number of terms: ";
+    cin >> n;
 
- while (i<n)
- {
-   cout<<" "<<fibonacci(i);
-   i++;
- }
- getch();
- return 0;
+    cout << "Fibonacci Series: ";
+
+    for (int i = 1; i <= n; ++i) {
+        // Prints the first two terms.
+        if(i == 1) {
+            cout << t1 << ", ";
+            continue;
+        }
+        if(i == 2) {
+            cout << t2 << ", ";
+            continue;
+        }
+        nextTerm = t1 + t2;
+        t1 = t2;
+        t2 = nextTerm;
+        
+        cout << nextTerm << ", ";
+    }
+    return 0;
 }
