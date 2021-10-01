@@ -1,32 +1,23 @@
-#include<iostream.h>
-#include<conio.h>
-
-void insertionSort(int arr[],int n)
-{
-  if (n==1) return;
-  insertionSort(arr,n-1);
-  int last=arr[n-1];
-  int j=n-2;
-  while(j>=0 && arr[j]>last)
-  {
-    arr[j+1]=arr[j];
-    j--;
-  }
-  arr[j+1]=last;
-}
-
-void printArray(int arr[],int n)
-{
-  for(int i=0;i<n;i++)
-  cout<<arr[i]<<" ,";
-  cout<<endl;
-}
-
-int main()
-{
-  int arr[]={12,11,13,5,6};
-  int n=sizeof(arr)/sizeof(arr[0]);
-  insertionSort(arr,n);
-  printArray(arr,n);
-  return 0;
-}
+#include <iostream>  
+using namespace std;  
+int main()  
+{  
+    int n1, n2, max_num, flag = 1;  
+    cout << " Enter two numbers: \n";  
+    cin >> n1 >> n2;      
+      
+    // use ternary operator to get the large number  
+    max_num = (n1 > n2) ? n1 : n2;  
+      
+    while (flag)    
+    {  
+        // if statement checks max_num is completely divisible by n1 and n2.  
+        if(max_num % n1 == 0 && max_num % n2 == 0)  
+        {  
+            cout << " The LCM of " <<n1 << " and " << n2 << " is " << max_num;  
+            break;  
+        }  
+        ++max_num; // update by 1 on each iteration  
+    }  
+    return 0;  
+}  
