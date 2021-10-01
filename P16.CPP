@@ -26,6 +26,18 @@ void main()
     }
     cout<<endl;
   }
+  
+  cout << "Enter dividend: ";
+    cin >> dividend;
+
+    cout << "Enter divisor: ";
+    cin >> divisor;
+
+    quotient = dividend / divisor;
+    remainder = dividend % divisor;
+
+    cout << "Quotient = " << quotient << endl;
+    cout << "Remainder = " << remainder;
 
   //to check for a complete graph
   int c;
@@ -42,8 +54,28 @@ void main()
   cout<<"The given graph is a complete graph"<<endl;
   else
   cout<<"The given graph is not a complete graph"<<endl;
+  
+  {
+   int n1, n2;
+
+   cout << "Enter two positive integers: ";
+   cin >> n1 >> n2;
+
+   cout << "H.C.F of " << n1 << " & " <<  n2 << " is: " << hcf(n1, n2);
+
+   return 0;
+}
 
   getch();
   return;
+}
+
+
+int hcf(int n1, int n2)
+{
+    if (n2 != 0)
+       return hcf(n2, n1 % n2);
+    else 
+       return n1;
 }
 
