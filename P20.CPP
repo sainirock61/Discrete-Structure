@@ -1,21 +1,20 @@
-#include<iostream.h>
-#include<conio.h>
-
-void main()
-{ clrscr();
-
-  cout<<"This program prints the number of leaves in a m-ary tree with i internal vertices"<<endl;
-  int n,i,m,leaves;
-  cout<<"Enter m:"<<endl;
-  cin>>m;
-  cout<<"Enter i:"<<endl;
-  cin>>i;
-  n=(m*i + 1);
-  cout<<"Total number of vertices: "<<n<<endl;
-  leaves =
-  ((m-1)*n + 1)/m;
-  cout<<"Number of leaves: "<<leaves<<endl;
-
-  getch();
-  return;
-}
+#include <iostream>  
+using namespace std;  
+int main()  
+{  
+  int n,r,sum=0,temp;    
+  cout<<"Enter the Number=";    
+  cin>>n;    
+ temp=n;    
+ while(n>0)    
+{    
+ r=n%10;    
+ sum=(sum*10)+r;    
+ n=n/10;    
+}    
+if(temp==sum)    
+cout<<"Number is Palindrome.";    
+else    
+cout<<"Number is not Palindrome.";   
+  return 0;  
+}  
