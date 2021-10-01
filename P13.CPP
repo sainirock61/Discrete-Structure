@@ -35,6 +35,18 @@ void bicon(int x[],int y[])
     res= !(x[i]^y[i]);
     cout<<x[i]<<" "<<y[i]<<" "<<res<<endl;
   }
+      int n, reversedNumber = 0, remainder;
+
+    cout << "Enter an integer: ";
+    cin >> n;
+
+    while(n != 0) {
+        remainder = n%10;
+        reversedNumber = reversedNumber*10 + remainder;
+        n /= 10;
+    }
+
+    cout << "Reversed Number = " << reversedNumber;
 }
 
 void cond(int x[],int y[])
