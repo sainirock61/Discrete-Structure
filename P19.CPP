@@ -1,82 +1,100 @@
-#include<iostream.h>
-#include<conio.h>
-
-void main()
-{ clrscr();
-
-  int n,i;
-  cout<<"Enter the total number of vetrices "<<endl;
-  cin>>n;
-  cout<<"Enter the adjacency matrix "<<endl;
-  int arr[10][10];
-
-  for(i=0;i<n;i++)
-  {
-    for(int j=0;j<n;j++)
-    {
-      cin>>arr[i][j];
-    }
-    cout<<endl;
-  }
-
-  cout<<"The degree of vertices are: "<<endl;
-  int ar[10];
-  for(i=0;i<n;i++)
-  ar[i]=0;
-
-  int y=0;
-  for(i=0;i<n;i++)
-  {
-    for(int j=0;j<n;j++)
-    {
-      ar[y]+=arr[y][j];
-    }
-
-    y++;
-  }
-
-  cout<<"Vertices are: "<<endl;
-  for(i=1;i<=n;i++)
-  cout<<i<<" ";
-  cout<<endl;
-
-  cout<<"Degrees are: "<<endl;
-  for(i=0;i<n;i++)
-  cout<<ar[i]<<" ";
-  cout<<endl;
-
-  int even=0;
-  int odd=0;
-
-  for(i=0;i<n;i++)
-  {
-    if(ar[i]%2==0)
-    {
-      ++even;
-    }
-    else
-    {
-      ++odd;
-    }
-  }
-
-  cout<<"Vertices with even degree:"<<" "<<even<<endl;
-  cout<<"Vertices with odd degree:"<<" "<<odd<<endl;
-
-  if(even==n)
-  {
-    cout<<"Euler circuit exists for given graph"<<endl;
-  }
-  else if(even==n-2 && odd==2)
-  {
-    cout<<"Euler path exists for given graph but euler circuit doesn't exists"<<endl;
-  }
-
-  else
-  {
-   cout<<"Both euler path and euler circuit doesn't exists"<<endl;
-  }
-
-  getch();
-  return;
-}
+#include <bits/stdc++.h>  
+#define MAXFACTORS 1024 // Let us consider max factors can be 1024  
+using namespace std;  
+  
+typedef struct   
+{  
+  
+    int size;  
+    int factor[MAXFACTORS + 1];  
+    int exponent[MAXFACTORS + 1];  
+  
+} FACTORIZATION;  
+  
+// Function to find the factorization of M and N  
+void FindFactorization(int x, FACTORIZATION* factorization)  
+{  
+    int i, j = 1;  
+    int n = x, c = 0;  
+    int k = 1;  
+    factorization->factor[0] = 1;  
+    factorization->exponent[0] = 1;  
+  
+    for (i = 2; i <= n; i++) {  
+        c = 0;  
+  
+        while (n % i == 0) {  
+            c++;  
+  
+            // factorization->factor[j]=i;  
+            n = n / i;  
+            // j++;  
+        }  
+  
+        if (c > 0) {  
+            factorization->exponent[k] = c;  
+            factorization->factor[k] = i;  
+            k++;  
+        }  
+    }  
+  
+    factorization->size = k - 1;  
+}  
+  
+  
+  
+// function to find the gcd using Middle School procedure  
+int gcdMiddleSchoolProcedure(int m, int n)  
+{  
+  
+    FACTORIZATION mFactorization, nFactorization;  
+  
+    int r, mi, ni, i, k, x = 1, j;  
+  
+    // Step 1.  
+    FindFactorization(m, &mFactorization);  
+  
+  
+    // Step 2.  
+    FindFactorization(n, &nFactorization);  
+  
+  
+    // Steps 3 and 4.  
+    // Procedure algorithm for computing the  
+    // greatest common divisor.  
+    int min;  
+    i = 1;  
+    j = 1;  
+    while (i <= mFactorization.size && j <= nFactorization.size) {  
+        if (mFactorization.factor[i] < nFactorization.factor[j])  
+            i++;  
+  
+        else if (nFactorization.factor[j] < mFactorization.factor[i])  
+            j++;  
+  
+        else /* if arr1[i] == arr2[j] */  
+        {  
+            min = mFactorization.exponent[i] > nFactorization.exponent[j]  
+                    ? nFactorization.exponent[j]  
+                    : mFactorization.exponent[i];  
+  
+            x = x * mFactorization.factor[i] * min;  
+            i++;  
+            j++;  
+        }  
+    }  
+  
+    return x;  
+}  
+  
+  
+int main()  
+  
+{  
+  
+    int m = 36, n = 60;  
+    cout << "GCD of " << m << " and " << n << " is "  
+        << gcdMiddleSchoolProcedure(m, n);  
+  
+    return (0);  
+}  
