@@ -110,30 +110,7 @@ void unioon(int aru[],int a[],int n1,int b[],int n2)
     }
     //printar(aru,nt,ch);
 }
-int setdifference(int ars[],int a[],int n1,int b[],int n2)
-{
-   // int ars[n1];
-    int art[20],k=0;
-    int st = intersection(art,a,n1,b,n2);
-    int i,j,flag;
-    for(i=0;i<n1;++i)
-    {
-        flag=0;
-        for(j=0;j<st;++j)
-        {
-            if(a[i]==art[j])
-            {
-                flag=1;
-                break;
-            }
-        }
-        if(flag==0)
-        {
-            ars[k++]=a[i];
-        }
-    }
-    return(k);
-}
+
 void symdif(int a[],int n1,int b[],int n2)
 {
     int ars[n1],i;
@@ -260,6 +237,14 @@ int main()
                     int y=setdifference(ars2,B,num2,A,num1);
                     cout<<"\n Set of B-A is : ";
                     printar(ars2,y);
+                    for(i=0;i<x;++i)
+                    {
+                        arsd[i]=ars[i];
+                    }
+                    for(i=x;i<x+y;++i)
+                    {
+                        arsd[i]=ars2[i-x];
+                    }
                     break;
                 }
         case 5 :{
