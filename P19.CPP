@@ -184,3 +184,67 @@ int main()
 
 	return 0;
 }
+
+using System;
+
+// C# program to find ceil of a given value in BST
+
+public class Node {
+
+	public int data;
+	public Node left, right;
+
+	public Node(int d)
+	{
+		data = d;
+		left = right = null;
+	}
+}
+
+public class BinaryTree {
+
+	public static Node root;
+
+	// Function to find ceil of a given input in BST. If input is more
+	// than the max key in BST, return -1
+	public virtual int Ceil(Node node, int input)
+	{
+
+		// Base case
+		if (node == null) {
+			return -1;
+		}
+
+		// We found equal key
+		if (node.data == input) {
+			return node.data;
+		}
+
+		// If root's key is smaller, ceil must be in right subtree
+		if (node.data < input) {
+			return Ceil(node.right, input);
+		}
+
+		// Else, either left subtree or root has the ceil value
+		int ceil = Ceil(node.left, input);
+		return (ceil >= input) ? ceil : node.data;
+	}
+
+	// Driver program to test the above functions
+	public static void Main(string[] args)
+	{
+		BinaryTree tree = new BinaryTree();
+		BinaryTree.root = new Node(8);
+		BinaryTree.root.left = new Node(4);
+		BinaryTree.root.right = new Node(12);
+		BinaryTree.root.left.left = new Node(2);
+		BinaryTree.root.left.right = new Node(6);
+		BinaryTree.root.right.left = new Node(10);
+		BinaryTree.root.right.right = new Node(14);
+		for (int i = 0; i < 16; i++) {
+			Console.WriteLine(i + " " + tree.Ceil(root, i));
+		}
+	}
+}
+
+
